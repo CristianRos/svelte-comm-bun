@@ -1,2 +1,12 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script>
+	import { goto } from '$app/navigation';
+	import { authClient } from '$lib/auth-client';
+
+	const session = authClient.useSession();
+</script>
+
+{#if $session.data}
+	<button class="btn-form" onclick={async () => await authClient.signOut()}> Sign out </button>
+{:else}
+	<button class="btn-form" onclick={async () => await goto('/login')}> Log in </button>
+{/if}

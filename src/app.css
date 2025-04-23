@@ -1,3 +1,13 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+
+@theme {
+	--color-error: oklch(0.637 0.237 25.331);
+}
+
+@layer components {
+	.btn-form {
+		@apply cursor-pointer rounded-md bg-slate-900 px-4 py-2 text-lg text-white transition-all duration-200 ease-in-out hover:bg-slate-700;
+	}
+}
