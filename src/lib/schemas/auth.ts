@@ -1,4 +1,3 @@
-// src/lib/schemas/auth.ts (or wherever you prefer)
 import { z } from 'zod';
 
 export const loginSchema = z.object({
@@ -20,6 +19,5 @@ export const signupSchema = z.object({
     path: ["passwordConfirmation"],
 });
 
-// Define the type for cleaner usage later
 export type LoginSchema = z.infer<typeof loginSchema>;
 export type SignupSchema = z.infer<typeof signupSchema>;

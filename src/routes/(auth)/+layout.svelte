@@ -30,8 +30,10 @@
 {/snippet}
 
 {#snippet homeButton()}
-	<button
-		class="cursor-pointer transition-all duration-150 ease-in-out hover:text-black/60"
-		onclick={async () => await goto('/')}>{'< Home page'}</button
-	>
+	<div class="w-full">
+		<button
+			class="cursor-pointer transition-all duration-150 ease-in-out hover:text-black/60"
+			onclick={async () => await goto('/')}>{'< Home page'}</button
+		>
+	</div>
 {/snippet}

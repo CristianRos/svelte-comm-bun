@@ -34,6 +34,7 @@
 		"prettier-plugin-svelte": "^3.3.3",
 		"svelte": "^5.0.0",
 		"svelte-check": "^4.0.0",
+		"svelte-cloudinary": "^2.3.0",
 		"sveltekit-superforms": "^2.24.1",
 		"tailwindcss": "^4.0.0",
 		"typescript": "^5.0.0",
@@ -44,7 +45,8 @@
 	"dependencies": {
 		"@neondatabase/serverless": "^0.10.4",
 		"better-auth": "^1.2.7",
-		"drizzle-orm": "^0.40.0",
+		"cloudinary": "^2.6.0",
+		"drizzle-orm": "^0.40.1",
 		"prettier-plugin-tailwindcss": "^0.6.11"
 	}
 }

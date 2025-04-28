@@ -54,14 +54,6 @@
 	}
 </script>
 
-<div class="flex flex-col items-center justify-center gap-4">
-	<div class="w-full">
-		{@render loginForm()}
-	</div>
-	<div class="h-1 w-full rounded-lg bg-black"></div>
-	<OAuthWrapper />
-</div>
-
 {#snippet loginForm()}
 	<div class="flex w-full flex-col gap-4">
 		<FormMessage {message} />
@@ -102,3 +94,11 @@
 		</button>
 	</div>
 {/snippet}
+
+<div class="flex flex-col items-center justify-center gap-4">
+	<div class="w-full">
+		{@render loginForm()}
+	</div>
+	<div class="h-1 w-full rounded-lg bg-black"></div>
+	<OAuthWrapper />
+</div>
