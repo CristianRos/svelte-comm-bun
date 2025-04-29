@@ -1,14 +1,14 @@
-import { CLOUDINARY_API_SECRET, VITE_CLOUDINARY_API_KEY, VITE_CLOUDINARY_CLOUD_NAME } from "$env/static/private";
 import { v2 } from "cloudinary";
 import { db } from "../db";
 import { productImages } from "../db/schema";
 import type { CloudinaryResource } from "@cloudinary-util/types";
 import { gte } from "drizzle-orm";
+import 'dotenv/config'
 
 v2.config({
-    cloud_name: VITE_CLOUDINARY_CLOUD_NAME,
-    api_key: VITE_CLOUDINARY_API_KEY,
-    api_secret: CLOUDINARY_API_SECRET,
+    cloud_name: process.env.VITE_CLOUDINARY_NAME,
+    api_key: process.env.VITE_CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
     secure: true
 });
 
