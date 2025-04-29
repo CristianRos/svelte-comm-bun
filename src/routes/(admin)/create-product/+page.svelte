@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createProductSchema } from '$lib/schemas/products.js';
 
-	import SuperDebug, { superForm } from 'sveltekit-superforms';
+	import { superForm } from 'sveltekit-superforms';
 	import { zod } from 'sveltekit-superforms/adapters';
 
 	import { CldUploadWidget, CldImage } from 'svelte-cloudinary';
