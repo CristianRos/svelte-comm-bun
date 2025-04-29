@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, unique, boolean, foreignKey, serial, integer } from "drizzle-orm/pg-core"
+import { pgTable, text, timestamp, serial, foreignKey, unique, integer, boolean } from "drizzle-orm/pg-core"
 import { sql } from "drizzle-orm"
 
 
@@ -11,6 +11,48 @@ export const verification = pgTable("verification", {
 	createdAt: timestamp("created_at", { mode: 'string' }),
 	updatedAt: timestamp("updated_at", { mode: 'string' }),
 });
+
+export const productGroup = pgTable("product_group", {
+	id: serial().primaryKey().notNull(),
+	name: text(),
+	description: text(),
+	createdAt: timestamp("created_at", { mode: 'string' }).defaultNow().notNull(),
+	updatedAt: timestamp("updated_at", { mode: 'string' }).defaultNow().notNull(),
+});
+
+export const product = pgTable("product", {
+	id: serial().primaryKey().notNull(),
+	groupId: integer("group_id"),
+	name: text().notNull(),
+	description: text(),
+	useGroupDescription: boolean("use_group_description"),
+	price: integer().default(0).notNull(),
+	stock: integer().default(0).notNull(),
+	createdAt: timestamp("created_at", { mode: 'string' }).defaultNow().notNull(),
+	updatedAt: timestamp("updated_at", { mode: 'string' }).defaultNow().notNull(),
+}, (table) => [
+	foreignKey({
+			columns: [table.groupId],
+			foreignColumns: [productGroup.id],
+			name: "product_group_id_product_group_id_fk"
+		}).onDelete("cascade"),
+	unique("product_name_unique").on(table.name),
+]);
+
+export const productImages = pgTable("product_images", {
+	id: serial().primaryKey().notNull(),
+	productId: serial("product_id").notNull(),
+	url: text().notNull(),
+	altText: text("alt_text"),
+	order: integer().default(0),
+	createdAt: timestamp("created_at", { mode: 'string' }).defaultNow().notNull(),
+}, (table) => [
+	foreignKey({
+			columns: [table.productId],
+			foreignColumns: [product.id],
+			name: "product_images_product_id_product_id_fk"
+		}).onDelete("cascade"),
+]);
 
 export const user = pgTable("user", {
 	id: text().primaryKey().notNull(),

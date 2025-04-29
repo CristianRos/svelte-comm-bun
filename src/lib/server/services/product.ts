@@ -9,7 +9,7 @@ export async function createProduct(data: createProductType){
         
         const result = await db.transaction(async (tx) => {
             const productToInsert: ProductInsertModel = {...validatedData}
-            
+            console.log(productToInsert)
             const createdProducts = await tx.insert(product)
                 .values(productToInsert)
                 .returning({ id: product.id, name: product.name })

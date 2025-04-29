@@ -1,3 +1,33 @@
+CREATE TABLE "product" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"group_id" integer,
+	"name" text NOT NULL,
+	"description" text,
+	"use_group_description" boolean,
+	"price" integer DEFAULT 0 NOT NULL,
+	"stock" integer DEFAULT 0 NOT NULL,
+	"created_at" timestamp DEFAULT now() NOT NULL,
+	"updated_at" timestamp DEFAULT now() NOT NULL,
+	CONSTRAINT "product_name_unique" UNIQUE("name")
+);
+--> statement-breakpoint
+CREATE TABLE "product_group" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"name" text,
+	"description" text,
+	"created_at" timestamp DEFAULT now() NOT NULL,
+	"updated_at" timestamp DEFAULT now() NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE "product_images" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"product_id" serial NOT NULL,
+	"url" text NOT NULL,
+	"alt_text" text,
+	"order" integer DEFAULT 0,
+	"created_at" timestamp DEFAULT now() NOT NULL
+);
+--> statement-breakpoint
 CREATE TABLE "user_profile" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"user_id" text NOT NULL,
@@ -53,6 +83,8 @@ CREATE TABLE "verification" (
 	"updated_at" timestamp
 );
 --> statement-breakpoint
+ALTER TABLE "product" ADD CONSTRAINT "product_group_id_product_group_id_fk" FOREIGN KEY ("group_id") REFERENCES "public"."product_group"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "product_images" ADD CONSTRAINT "product_images_product_id_product_id_fk" FOREIGN KEY ("product_id") REFERENCES "public"."product"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "user_profile" ADD CONSTRAINT "user_profile_user_id_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."user"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "account" ADD CONSTRAINT "account_user_id_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."user"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "session" ADD CONSTRAINT "session_user_id_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."user"("id") ON DELETE cascade ON UPDATE no action;

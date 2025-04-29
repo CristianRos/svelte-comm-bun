@@ -28,7 +28,7 @@ export const productGroup = pgTable('product_group', {
 
 export const product = pgTable('product', {
 	id: serial('id').primaryKey(),
-	group_id: serial('group_id')
+	group_id: integer('group_id')
 		.references(() => productGroup.id, { onDelete: 'cascade' }),
 	name: text('name')
 		.notNull()
