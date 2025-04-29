@@ -25,3 +25,6 @@ jobs:
         run: bun run src/lib/server/scheduled-tasks/cleanupOldData.ts
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          VITE_CLOUDINARY_CLOUD_NAME: ${{ secrets.VITE_CLOUDINARY_CLOUD_NAME }}
+          VITE_CLOUDINARY_API_KEY: ${{ secrets.VITE_CLOUDINARY_API_KEY }}
+          CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
